@@ -71,7 +71,17 @@ Customers - Vehicle Spare Parts Inventory
                 </tbody>
             </table>
         </div>
-        {{ $customers->links() }}
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 gap-2">
+            <div class="text-muted small">
+                Showing {{ $customers->firstItem() ?? 0 }}
+                to {{ $customers->lastItem() ?? 0 }}
+                of {{ $customers->total() }} results
+            </div>
+
+            <div>
+                {{ $customers->withQueryString()->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
     </div>
 </div>
 

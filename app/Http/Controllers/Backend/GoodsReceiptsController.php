@@ -30,7 +30,7 @@ class GoodsReceiptsController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to view Goods Receipts !');
         }
 
-        $goodsReceipts = GoodsReceipt::with(['purchaseOrder', 'supplier', 'warehouse'])->latest()->paginate(20);
+        $goodsReceipts = GoodsReceipt::with(['purchaseOrder', 'supplier', 'warehouse'])->latest()->paginate(15);
 
         return view('backend.goods-receipts.index', compact('goodsReceipts'));
     }

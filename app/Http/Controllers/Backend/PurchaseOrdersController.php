@@ -28,7 +28,7 @@ class PurchaseOrdersController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to view Purchase Orders !');
         }
 
-        $purchaseOrders = PurchaseOrder::with(['supplier', 'warehouse', 'items'])->latest()->paginate(20);
+        $purchaseOrders = PurchaseOrder::with(['supplier', 'warehouse', 'items'])->latest()->paginate(15);
 
         return view('backend.purchase-orders.index', compact('purchaseOrders'));
     }

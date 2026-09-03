@@ -65,7 +65,18 @@ Stock Adjustments - Vehicle Spare Parts Inventory
                 </tbody>
             </table>
         </div>
-        {{ $adjustments->links() }}
+        
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 gap-2">
+            <div class="text-muted small">
+                Showing {{ $adjustments->firstItem() ?? 0 }}
+                to {{ $adjustments->lastItem() ?? 0 }}
+                of {{ $adjustments->total() }} results
+            </div>
+
+            <div>
+                {{ $adjustments->withQueryString()->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
     </div>
 </div>
 

@@ -104,7 +104,18 @@ Current Stock - Vehicle Spare Parts Inventory
                 </tbody>
             </table>
         </div>
-        {{ $spareParts->links() }}
+        
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 gap-2">
+            <div class="text-muted small">
+                Showing {{ $spareParts->firstItem() ?? 0 }}
+                to {{ $spareParts->lastItem() ?? 0 }}
+                of {{ $spareParts->total() }} results
+            </div>
+
+            <div>
+                {{ $spareParts->withQueryString()->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
     </div>
 </div>
 

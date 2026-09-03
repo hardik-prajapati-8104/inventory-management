@@ -39,7 +39,7 @@ class SalesController extends Controller
             $query->where('payment_status', $status);
         }
 
-        $sales = $query->latest()->paginate(20)->withQueryString();
+        $sales = $query->latest()->paginate(15)->withQueryString();
 
         return view('backend.sales.index', compact('sales'));
     }

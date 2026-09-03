@@ -57,7 +57,18 @@ Sales Returns - Vehicle Spare Parts Inventory
                 </tbody>
             </table>
         </div>
-        {{ $returns->links() }}
+        
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 gap-2">
+            <div class="text-muted small">
+                Showing {{ $returns->firstItem() ?? 0 }}
+                to {{ $returns->lastItem() ?? 0 }}
+                of {{ $returns->total() }} results
+            </div>
+
+            <div>
+                {{ $returns->withQueryString()->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
     </div>
 </div>
 

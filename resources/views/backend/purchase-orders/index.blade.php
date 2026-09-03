@@ -69,7 +69,17 @@ Purchase Orders - Vehicle Spare Parts Inventory
                 </tbody>
             </table>
         </div>
-        {{ $purchaseOrders->links() }}
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 gap-2">
+            <div class="text-muted small">
+                Showing {{ $purchaseOrders->firstItem() ?? 0 }}
+                to {{ $purchaseOrders->lastItem() ?? 0 }}
+                of {{ $purchaseOrders->total() }} results
+            </div>
+
+            <div>
+                {{ $purchaseOrders->withQueryString()->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
     </div>
 </div>
 

@@ -33,7 +33,7 @@ class SalesReturnsController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to view Sales Returns !');
         }
 
-        $returns = SalesReturn::with(['customer', 'warehouse', 'items'])->latest()->paginate(20);
+        $returns = SalesReturn::with(['customer', 'warehouse', 'items'])->latest()->paginate(15);
 
         return view('backend.sales-returns.index', compact('returns'));
     }

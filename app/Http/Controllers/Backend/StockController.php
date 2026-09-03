@@ -43,7 +43,7 @@ class StockController extends Controller
             $query->whereHas('stock', fn ($q) => $q->where('warehouse_id', $warehouseId)->where('current_stock', '>', 0));
         }
 
-        $spareParts = $query->orderBy('name')->paginate(30)->withQueryString();
+        $spareParts = $query->orderBy('name')->paginate(15)->withQueryString();
         $warehouses = Warehouse::orderBy('name')->get();
 
         return view('backend.stock.index', compact('spareParts', 'warehouses'));

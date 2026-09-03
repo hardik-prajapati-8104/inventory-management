@@ -33,7 +33,7 @@ class PurchaseReturnsController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to view Purchase Returns !');
         }
 
-        $returns = PurchaseReturn::with(['supplier', 'warehouse', 'items'])->latest()->paginate(20);
+        $returns = PurchaseReturn::with(['supplier', 'warehouse', 'items'])->latest()->paginate(15);
 
         return view('backend.purchase-returns.index', compact('returns'));
     }

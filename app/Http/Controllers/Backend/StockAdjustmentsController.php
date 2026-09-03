@@ -31,7 +31,7 @@ class StockAdjustmentsController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to view Stock Adjustments !');
         }
 
-        $adjustments = StockAdjustment::with(['warehouse', 'createdBy', 'items'])->latest()->paginate(20);
+        $adjustments = StockAdjustment::with(['warehouse', 'createdBy', 'items'])->latest()->paginate(15);
 
         return view('backend.stock-adjustments.index', compact('adjustments'));
     }

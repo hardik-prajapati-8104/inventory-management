@@ -39,7 +39,7 @@ class PurchasesController extends Controller
             $query->where('payment_status', $status);
         }
 
-        $purchases = $query->latest()->paginate(20)->withQueryString();
+        $purchases = $query->latest()->paginate(15)->withQueryString();
 
         return view('backend.purchases.index', compact('purchases'));
     }

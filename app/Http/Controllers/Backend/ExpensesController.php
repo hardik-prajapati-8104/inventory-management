@@ -37,7 +37,7 @@ class ExpensesController extends Controller
             $query->whereDate('expense_date', '<=', $to);
         }
 
-        $expenses = $query->latest('expense_date')->paginate(25)->withQueryString();
+        $expenses = $query->latest('expense_date')->paginate(15)->withQueryString();
         $total = (clone $query)->sum('amount');
 
         return view('backend.expenses.index', compact('expenses', 'total'));

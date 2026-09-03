@@ -34,7 +34,7 @@ class CustomersController extends Controller
             });
         }
 
-        $customers = $query->orderBy('customer_name')->paginate(25)->withQueryString();
+        $customers = $query->orderBy('customer_name')->paginate(15)->withQueryString();
 
         return view('backend.customers.index', compact('customers'));
     }
