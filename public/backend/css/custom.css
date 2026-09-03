@@ -1,0 +1,240 @@
+:root {
+  --vsp-primary: #aa8038;
+  --vsp-primary-dark: #8a6529;
+  --vsp-primary-darker: #6b4d1f;
+  --vsp-primary-light: #c9a25e;
+  --vsp-primary-lighter: #f3e9d6;
+  --vsp-primary-tint: #faf5ea;
+
+  --vsp-sidebar-bg: #1f1a12;
+  --vsp-sidebar-bg-active: #2c2418;
+  --vsp-sidebar-text: #cfc4ac;
+  --vsp-sidebar-text-muted: #8c8272;
+
+  --vsp-text: #2a2620;
+  --vsp-text-muted: #6b6459;
+  --vsp-border: #e7e1d4;
+  --vsp-bg: #f7f5f0;
+  --vsp-card-bg: #ffffff;
+
+  --vsp-success: #2e8b57;
+  --vsp-danger: #c0392b;
+  --vsp-warning: #d4a017;
+  --vsp-info: #3f7d9e;
+
+  --vsp-radius: 10px;
+  --vsp-sidebar-width: 260px;
+  --vsp-sidebar-width-collapsed: 76px;
+  --vsp-header-height: 64px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--vsp-bg);
+  color: var(--vsp-text);
+  margin: 0;
+  font-size: 14px;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ---------- Layout shell ---------- */
+.vsp-wrapper { display: flex; min-height: 100vh; }
+
+.vsp-sidebar {
+  width: var(--vsp-sidebar-width);
+  background: var(--vsp-sidebar-bg);
+  color: var(--vsp-sidebar-text);
+  flex-shrink: 0;
+  transition: width .2s ease;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+.vsp-sidebar--collapsed { width: var(--vsp-sidebar-width-collapsed); }
+.vsp-sidebar--collapsed .vsp-sidebar__brand-text,
+.vsp-sidebar--collapsed .vsp-sidebar__nav span,
+.vsp-sidebar--collapsed .vsp-sidebar__heading { display: none; }
+
+.vsp-sidebar__brand {
+  display: flex; align-items: center; gap: .6rem;
+  padding: 1.25rem 1.25rem;
+  font-weight: 600; font-size: 1.05rem;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.vsp-sidebar__brand i { color: var(--vsp-primary-light); font-size: 1.4rem; }
+
+.vsp-sidebar__nav ul { 
+  /* padding: .5rem 0 2rem;  */
+  margin: 0; 
+}
+.vsp-sidebar__heading {
+  padding: 1rem 1.25rem .35rem;
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--vsp-sidebar-text-muted);
+  font-weight: 600;
+}
+.vsp-sidebar__nav li > a {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .55rem 1.25rem;
+  color: var(--vsp-sidebar-text);
+  font-size: .875rem;
+  border-left: 3px solid transparent;
+  transition: background .15s, color .15s;
+}
+.vsp-sidebar__nav li > a i { width: 1.1rem; text-align: center; font-size: 1rem; }
+.vsp-sidebar__nav li > a:hover {
+  background: var(--vsp-sidebar-bg-active);
+  color: #fff;
+}
+.vsp-sidebar__nav li > a.active {
+  background: var(--vsp-sidebar-bg-active);
+  color: #fff;
+  border-left-color: var(--vsp-primary);
+  font-weight: 500;
+}
+
+.vsp-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.vsp-header {
+  height: var(--vsp-header-height);
+  background: var(--vsp-card-bg);
+  border-bottom: 1px solid var(--vsp-border);
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0 1.5rem;
+  position: sticky; top: 0; z-index: 10;
+}
+.vsp-header__toggle {
+  border: none; background: transparent; font-size: 1.3rem; color: var(--vsp-text);
+  cursor: pointer;
+}
+.vsp-header__search {
+  align-items: center; gap: .5rem;
+  background: var(--vsp-bg);
+  border: 1px solid var(--vsp-border);
+  border-radius: 999px;
+  padding: .4rem .9rem;
+  flex: 1; max-width: 420px;
+  color: var(--vsp-text-muted);
+}
+.vsp-header__search input {
+  border: none; background: transparent; outline: none; flex: 1; font-family: inherit; font-size: .85rem;
+}
+.vsp-header__right { margin-left: auto; display: flex; align-items: center; gap: .75rem; }
+.vsp-header__icon-btn {
+  border: none; background: var(--vsp-bg); width: 38px; height: 38px; border-radius: 50%;
+  position: relative; cursor: pointer; color: var(--vsp-text);
+}
+.vsp-badge-dot {
+  position: absolute; top: 7px; right: 9px; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--vsp-danger); border: 2px solid var(--vsp-card-bg);
+}
+.vsp-notif-menu { min-width: 320px; max-height: 380px; overflow-y: auto; }
+.vsp-header__profile {
+  display: flex; align-items: center; gap: .5rem;
+  border: none; background: transparent; cursor: pointer; color: var(--vsp-text); font-family: inherit;
+}
+.vsp-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--vsp-primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: .9rem;
+}
+
+.vsp-content { padding: 1.5rem; flex: 1; }
+.vsp-footer {
+  padding: 1rem 1.5rem; text-align: center; color: var(--vsp-text-muted); font-size: .8rem;
+  border-top: 1px solid var(--vsp-border);
+}
+
+/* ---------- Page title / breadcrumbs ---------- */
+.page-title-area { margin-bottom: 1.25rem; }
+.breadcrumbs { list-style: none; display: flex; gap: .4rem; padding: 0; margin: 0; font-size: .82rem; color: var(--vsp-text-muted); }
+.breadcrumbs li:not(:last-child)::after { content: '/'; margin-left: .4rem; color: var(--vsp-border); }
+.breadcrumbs a { color: var(--vsp-primary-dark); font-weight: 500; }
+.breadcrumbs span { color: var(--vsp-text); }
+
+/* ---------- Cards ---------- */
+.card { border: 1px solid var(--vsp-border); border-radius: var(--vsp-radius); box-shadow: 0 1px 2px rgba(20,15,5,.04); }
+.card-body { padding: 1.25rem; }
+
+/* ---------- KPI cards ---------- */
+.vsp-kpi {
+  border: 1px solid var(--vsp-border);
+  border-radius: var(--vsp-radius);
+  background: var(--vsp-card-bg);
+  padding: 1.1rem 1.25rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.vsp-kpi__icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--vsp-primary-lighter); color: var(--vsp-primary-darker);
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.vsp-kpi__value { font-size: 1.4rem; font-weight: 700; color: var(--vsp-text); line-height: 1.1; }
+.vsp-kpi__label { font-size: .78rem; color: var(--vsp-text-muted); margin-top: .15rem; }
+
+/* ---------- Buttons ---------- */
+.btn-primary, .btn-add, .btn-edit, .btn-success {
+  background-color: var(--vsp-primary) !important;
+  border-color: var(--vsp-primary) !important;
+  color: #fff !important;
+}
+.btn-primary:hover, .btn-add:hover, .btn-edit:hover, .btn-success:hover {
+  background-color: var(--vsp-primary-dark) !important;
+  border-color: var(--vsp-primary-dark) !important;
+}
+.btn-danger { background-color: var(--vsp-danger) !important; border-color: var(--vsp-danger) !important; }
+.text-error { color: var(--vsp-danger); font-size: .78rem; }
+
+/* ---------- Tables ---------- */
+table.dataTable thead th, .table thead th {
+  background: var(--vsp-primary-tint);
+  color: var(--vsp-primary-darker);
+  font-weight: 600;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  border-bottom: 1px solid var(--vsp-border) !important;
+}
+.table td, .table th { vertical-align: middle; }
+
+/* ---------- Forms ---------- */
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 1px solid var(--vsp-border);
+  font-family: inherit;
+  font-size: .875rem;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--vsp-primary);
+  box-shadow: 0 0 0 .2rem rgba(170, 128, 56, .15);
+}
+label { font-weight: 500; font-size: .82rem; color: var(--vsp-text); }
+
+/* ---------- Badges ---------- */
+.badge-info { background-color: var(--vsp-primary-lighter); color: var(--vsp-primary-darker); }
+
+/* ---------- Login page ---------- */
+.vsp-auth {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--vsp-primary-darker), var(--vsp-primary));
+}
+.vsp-auth__card {
+  background: #fff; border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 400px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.25);
+}
+.vsp-auth__logo { text-align: center; margin-bottom: 1.5rem; }
+.vsp-auth__logo i { font-size: 2.2rem; color: var(--vsp-primary); }
+
+@media (max-width: 768px) {
+  .vsp-sidebar { position: fixed; left: -100%; z-index: 1050; transition: left .2s ease; }
+  .vsp-sidebar--collapsed { left: 0; width: var(--vsp-sidebar-width); }
+}
