@@ -33,7 +33,7 @@ class StockTakesController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to view Stock Takes !');
         }
 
-        $stockTakes = StockTake::with(['warehouse', 'createdBy', 'items'])->latest()->paginate(20);
+        $stockTakes = StockTake::with(['warehouse', 'createdBy', 'items'])->latest()->paginate(15);
 
         return view('backend.stock-takes.index', compact('stockTakes'));
     }

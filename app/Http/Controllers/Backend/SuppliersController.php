@@ -34,7 +34,7 @@ class SuppliersController extends Controller
             });
         }
 
-        $suppliers = $query->orderBy('company_name')->paginate(25)->withQueryString();
+        $suppliers = $query->orderBy('company_name')->paginate(15)->withQueryString();
 
         return view('backend.suppliers.index', compact('suppliers'));
     }

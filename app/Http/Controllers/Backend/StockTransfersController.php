@@ -31,7 +31,7 @@ class StockTransfersController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to view Stock Transfers !');
         }
 
-        $transfers = StockTransfer::with(['fromWarehouse', 'toWarehouse', 'requestedBy', 'items'])->latest()->paginate(20);
+        $transfers = StockTransfer::with(['fromWarehouse', 'toWarehouse', 'requestedBy', 'items'])->latest()->paginate(15);
 
         return view('backend.stock-transfers.index', compact('transfers'));
     }

@@ -56,7 +56,18 @@ Stock Takes - Vehicle Spare Parts Inventory
                 </tbody>
             </table>
         </div>
-        {{ $stockTakes->links() }}
+        
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 gap-2">
+            <div class="text-muted small">
+                Showing {{ $stockTakes->firstItem() ?? 0 }}
+                to {{ $stockTakes->lastItem() ?? 0 }}
+                of {{ $stockTakes->total() }} results
+            </div>
+
+            <div>
+                {{ $stockTakes->withQueryString()->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
     </div>
 </div>
 
