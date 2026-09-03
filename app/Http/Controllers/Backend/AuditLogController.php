@@ -21,7 +21,7 @@ class AuditLogController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to view Audit Logs !');
         }
 
-        $logs = AuditLog::with('admin')->latest()->paginate(50);
+        $logs = AuditLog::with('admin')->latest()->paginate(15);
 
         return view('backend.audit-logs.index', compact('logs'));
     }

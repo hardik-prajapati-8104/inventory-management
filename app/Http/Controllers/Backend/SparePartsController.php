@@ -77,7 +77,7 @@ class SparePartsController extends Controller
             };
         }
 
-        $spareParts = $query->orderByDesc('id')->paginate(25)->withQueryString();
+        $spareParts = $query->orderByDesc('id')->paginate(15)->withQueryString();
         $categories = Category::topLevel()->orderBy('name')->get();
         $brands = Brand::orderBy('name')->get();
 

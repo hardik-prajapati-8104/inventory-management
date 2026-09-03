@@ -84,9 +84,9 @@ Spare Parts - Vehicle Spare Parts Inventory
                         <th width="2%"><input type="checkbox" id="selectAllParts"></th>
                         <th>Part</th>
                         <th>Part No. / SKU</th>
-                        <th>Vehicle</th>
+                        {{-- <th>Vehicle</th>
                         <th>Category</th>
-                        <th>Brand</th>
+                        <th>Brand</th> --}}
                         <th>Purchase Price</th>
                         <th>Retail Price</th>
                         <th>Stock</th>
@@ -102,7 +102,7 @@ Spare Parts - Vehicle Spare Parts Inventory
                         <td>
                             <div class="d-flex align-items-center gap-2">
                                 @if ($part->main_image)
-                                    <img src="{{ asset('storage/'.$part->main_image) }}" class="rounded" width="36" height="36" style="object-fit:cover;">
+                                    <img src="{{ asset('storage/app/public/'.$part->main_image) }}" class="rounded" width="36" height="36" style="object-fit:cover;">
                                 @else
                                     <span class="vsp-avatar" style="width:36px;height:36px;"><i class="bi bi-gear-wide-connected"></i></span>
                                 @endif
@@ -116,7 +116,7 @@ Spare Parts - Vehicle Spare Parts Inventory
                             <div>{{ $part->part_number }}</div>
                             <div class="small text-muted">{{ $part->sku }}</div>
                         </td>
-                        <td>
+                        {{-- <td>
                             @forelse ($part->vehicles as $variant)
                                 <span class="badge bg-light text-dark border mb-1">{{ $variant->label }}</span>
                             @empty
@@ -124,7 +124,7 @@ Spare Parts - Vehicle Spare Parts Inventory
                             @endforelse
                         </td>
                         <td>{{ $part->category->name ?? '-' }}</td>
-                        <td>{{ $part->brand->name ?? '-' }}</td>
+                        <td>{{ $part->brand->name ?? '-' }}</td> --}}
                         <td>₹{{ number_format($part->purchase_price, 2) }}</td>
                         <td>₹{{ number_format($part->retail_price, 2) }}</td>
                         <td>
@@ -172,7 +172,17 @@ Spare Parts - Vehicle Spare Parts Inventory
                 </tbody>
             </table>
         </div>
-        {{ $spareParts->links() }}
+       <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 gap-2">
+            <div class="text-muted small">
+                Showing {{ $spareParts->firstItem() ?? 0 }}
+                to {{ $spareParts->lastItem() ?? 0 }}
+                of {{ $spareParts->total() }} results
+            </div>
+
+            <div>
+                {{ $spareParts->withQueryString()->links('pagination::bootstrap-5') }}
+            </div>
+        </div>
     </div>
 </div>
 
